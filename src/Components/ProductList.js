@@ -1,7 +1,7 @@
 import React from 'react';
-import Product from '../Product/Product';
-import Title from '../Title/Title';
-import {storeProducts} from '../../data';
+import Product from './Product';
+import Title from './Title';
+import {storeProducts} from '../data';
 import {useState} from 'react';
 
 function ProductList() {

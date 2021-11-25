@@ -2,11 +2,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './Components/Navbar/Navbar';
-import ProductList from './Components/ProductList/ProductList';
-import Details from './Components/Details/Details';
-import Cart from './Components/Cart/Cart';
-import Default from './Components/Default/Default';
+import Navbar from './Components/Navbar';
+import ProductList from './Components/ProductList';
+import Details from './Components/Details';
+import Cart from './Components/Cart';
+import Default from './Components/Default';
 
 
 function App() {
