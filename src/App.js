@@ -1,15 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import React from 'react';
 
 function App() {
   return (
-    <div className='container'>
-      <div className='row'>
-        <div className='col-6'>column number one</div>
-        <div className='col-6'>column number one</div>
-      </div>
-    </div>
+    <React.Fragment>
+      <h3>Hello from app</h3>
+    </React.Fragment>
   );
 }
 
