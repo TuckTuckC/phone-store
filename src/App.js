@@ -7,8 +7,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Redux Stuff
-import { useSelector, useDispatch } from 'react-redux';
-import {handleDetail, setProducts} from './redux/productSlice';
 
 // Components
 import Navbar from './Components/Navbar';
@@ -18,12 +16,8 @@ import Cart from './Components/Cart';
 import Default from './Components/Default';
 
 
+
 function App() {
-
-    const products = useSelector((state) => state.productList.value);
-    const dispatch = useDispatch();
-
-    console.log(products);
 
     return (
         <Router>
