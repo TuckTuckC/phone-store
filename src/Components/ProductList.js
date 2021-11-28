@@ -1,14 +1,11 @@
 import React from 'react';
 import Product from './Product';
 import Title from './Title';
-import {storeProducts} from '../data';
 
 import { ProductConsumer } from '../context';
 
-import {useState} from 'react';
 
 function ProductList() {
-    const [products, setProducts] = useState(storeProducts)
     return (
         <React.Fragment>
             <div className='py-5'>
