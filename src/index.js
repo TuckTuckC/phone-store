@@ -4,10 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {ProductProvider} from './context';
+
 ReactDOM.render(
-  <React.Fragment>
-    <App />
-  </React.Fragment>,
+  <ProductProvider>
+    <React.Fragment>
+      <App />
+    </React.Fragment>
+  </ProductProvider>,
   document.getElementById('root')
 );
 
