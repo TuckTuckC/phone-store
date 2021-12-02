@@ -8,16 +8,28 @@ const ProductContext = React.createContext();
 
 function ProductProvider(props) {
 
-    const [products, setProducts] = useState(storeProducts);
+    const [products, setProducts] = useState([]);
     const [detProduct, setDetProduct] = useState(detailProduct);
+
+    setProducts = () => {
+        let tempProducts = [];
+        storeProducts.forEach(item => {
+            const singleItem = {...item};
+            tempProducts = [...tempProducts, singleItem];
+        });
+
+        setProducts(tempProducts);
+    };
 
     const handleDetail = () => {
         console.log('Hello from detail');
-    }
+    };
 
     const addToCart = () => {
         console.log('Hello from addToCart');
-    }
+    };
+
+
 
     return (
         <ProductContext.Provider value={{
