@@ -23,7 +23,7 @@ function Navbar() {
                 </li>
             </ul>
             <Link to='/cart' className='ml-auto'>
-                <ButtonContainer>
+                <ButtonContainer cart>
                     <span className='mr-2'>
                         <i className='fas fa-cart-plus' />
                     </span>
