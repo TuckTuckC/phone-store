@@ -10,7 +10,7 @@ function ProductProvider(props) {
 
     const [products, setProducts] = useState([]);
     const [detProduct, setDetProduct] = useState(detailProduct);
-
+// TEST
     setProducts = () => {
         let tempProducts = [];
         storeProducts.forEach(item => {
