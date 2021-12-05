@@ -11,9 +11,12 @@ function ProductProvider(props) {
     
     const [products, setProducts] = useState(storeProducts);
     const [detProduct, setDetProduct] = useState(detailProduct);
-    const [cart, setCart] = useState([]);
-    const [modalOpen, setModelOpen] = useState(true);
+    const [cart, setCart] = useState(storeProducts);
+    const [modalOpen, setModalOpen] = useState(false);
     const [modalProduct, setModalProduct] = useState(detailProduct);
+    const [cartSubTotal, setCartSubTotal] = useState(0);
+    const [cartTax, setCartTax] = useState(0);
+    const [cartTotal, setCartTotal] = useState(0);
     
     const getItem = (id) => {
         const product = products.find(item => item.id === id);
@@ -49,15 +52,41 @@ function ProductProvider(props) {
     const closeModal = () => {
         setModalOpen(false);
     };
+
+    const increment = (id) => {
+        console.log('This is increment method');
+    };
+
+    const decrement = (id) => {
+        console.log('This is decrement method');
+    };
+
+    const removeItem = (id) => {
+        console.log('Item removed');
+    };
+
+    const clearCart = () => {
+        console.log('cleared cart');
+    };
     
     return (
         <ProductContext.Provider value={{
             products, 
-            detProduct, 
+            detProduct,
+            modalOpen,
+            modalProduct,
+            cart,
+            cartSubTotal,
+            cartTax,
+            cartTotal,
             handleDetail,
             addToCart,
             openModal,
             closeModal,
+            increment,
+            decrement,
+            removeItem,
+            clearCart,
         }}>
             {props.children}
         </ProductContext.Provider>

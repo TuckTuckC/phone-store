@@ -38,6 +38,7 @@ function Product(props) {
                                 onClick={
                                     () => {
                                         value.addToCart(id);
+                                        value.openModal(id);
                                     }
                                 } 
                             >
