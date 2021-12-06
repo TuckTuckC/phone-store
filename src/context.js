@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect} from 'react';
 import { storeProducts, detailProduct } from './data';
 
 const ProductContext = React.createContext();
