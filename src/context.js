@@ -50,12 +50,37 @@ function ProductProvider(props) {
         setModalOpen(false);
     };
     
+
+    const findSelectedCartProduct = (id) => {
+        let tempCart = [...cart];
+
+        const selectedProduct = tempCart.find(item => item.id === id);
+        const index = tempCart.indexOf(selectedProduct);
+        const product = tempCart[index];
+        return {product, tempCart};
+    }
+
     const increment = (id) => {
-        console.log('This is increment method');
+        const {product, tempCart} = findSelectedCartProduct(id);
+
+        product.count += 1;
+        product.total = product.count * product.price;
+
+        setCart([...tempCart]);
     };
     
     const decrement = (id) => {
-        console.log('This is decrement method');
+        const {product, tempCart} = findSelectedCartProduct(id);
+
+        product.count -= 1;
+        
+        if (product.count < 1) {
+            removeItem(id);
+        } else {
+            product.total = product.count * product.price;
+            setCart([...tempCart]);
+        }
+
     };
     
     const removeItem = (id) => {
