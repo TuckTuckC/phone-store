@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import { storeProducts, detailProduct } from './data';
 
 const ProductContext = React.createContext();
@@ -11,7 +11,7 @@ function ProductProvider(props) {
     
     const [products, setProducts] = useState(storeProducts);
     const [detProduct, setDetProduct] = useState(detailProduct);
-    const [cart, setCart] = useState(storeProducts);
+    const [cart, setCart] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalProduct, setModalProduct] = useState(detailProduct);
     const [cartSubTotal, setCartSubTotal] = useState(0);
@@ -27,7 +27,7 @@ function ProductProvider(props) {
         const product = getItem(id);
         setDetProduct(product);
     };
-    
+
     const addToCart = (id) => {
         let tempProducts = [...products];
         const index = tempProducts.indexOf(getItem(id));
@@ -39,35 +39,63 @@ function ProductProvider(props) {
         
         setCart([...cart, product])
     };
-    useEffect(() => {
-        console.log(cart);
-    }, [cart])
     
     const openModal = id => {
         const product = getItem(id);
         setModalProduct(product);
         setModalOpen(true);
     };
-
+    
     const closeModal = () => {
         setModalOpen(false);
     };
-
+    
     const increment = (id) => {
         console.log('This is increment method');
     };
-
+    
     const decrement = (id) => {
         console.log('This is decrement method');
     };
-
+    
     const removeItem = (id) => {
-        console.log('Item removed');
+        let tempProducts = [...products];
+        let tempCart = [...cart];
+
+        tempCart = tempCart.filter(item => item.id !== id);
+
+        const index = tempProducts.indexOf(getItem(id));
+        let removedProduct = tempProducts[index];
+        removedProduct.inCart = false;
+        removedProduct.count = 0;
+        removedProduct.total = 0;
+
+        setCart([...tempCart]);
+        setProducts([...tempProducts]);
     };
 
     const clearCart = () => {
-        console.log('cleared cart');
+        setCart([]);
+        products.forEach(item => {
+            item.inCart = false;
+            item.count = 0;
+            item.total = 0;
+        });
     };
+    
+    const addTotals = () => {
+        let subTotal = 0;
+        cart.map(item => (subTotal += item.total));
+        const tempTax = subTotal * 0.07;
+        const tax = parseFloat(tempTax.toFixed(2));
+        const total = subTotal + tax;
+        setCartSubTotal(subTotal);
+        setCartTax(tax);
+        setCartTotal(total);
+    }
+    useEffect(() => {
+        addTotals();
+    }, [cart])
     
     return (
         <ProductContext.Provider value={{
