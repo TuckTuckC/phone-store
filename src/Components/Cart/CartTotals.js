@@ -1,9 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import PayPalButton from './PayPalButton';
+import {useNavigate} from 'react-router-dom';
 
-function CartTotals({value}) {
+function CartTotals({value, history}) {
 
     const {cartSubTotal, cartTax, cartTotal, clearCart} = value;
+    const redirect = useNavigate();
 
     return (
         <React.Fragment>
@@ -34,6 +37,7 @@ function CartTotals({value}) {
                                 total: <strong>${cartTotal}</strong>
                             </span>
                         </h5>
+                        <PayPalButton total={cartTotal} clearCart={clearCart} history={redirect} />
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom';
 import Title from '../Title';
 import CartColumns from './CartColumns';
 import EmptyCart from './EmptyCart';
@@ -7,6 +8,9 @@ import CartTotals from './CartTotals';
 import {ProductConsumer} from '../../context';
 
 function Cart() {
+
+    const url = window.location.pathname
+
     return (
         <section>
             <ProductConsumer>
@@ -18,7 +22,7 @@ function Cart() {
                                 <Title name='your' title='cart' />
                                 <CartColumns />
                                 <CartList value={value} />
-                                <CartTotals value={value} />
+                                <CartTotals value={value} history={url} />
                             </React.Fragment>
                         );
                     } else {
